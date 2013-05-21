@@ -1,0 +1,10 @@
+46cd718a0df1a97a10cb53a297cd788b *DESCRIPTION
+5905ce91f4185f50abafbe09763a8b83 *NAMESPACE
+74557e4d437608c638be55163f52c63d *R/bws.count.R
+893430b72f5ab06b210ed0bd6f01db12 *R/bws.dataset.R
+0c73ef1069815a5584691df7a8b2e3a1 *R/bws.questionnaire.R
+48fb6e7d4a30129ee02f7a9ba304029d *R/print.bws.count.R
+63847f9da8c820792c12c8844d69e330 *man/bws.count.Rd
+276cd7713a4c2ee676f1b10493d9ab2c *man/bws.dataset.Rd
+358598f1725ab6d04d261694aaf3f36c *man/bws.questionnaire.Rd
+b8714e4a57bdafe63bf314f09c0474cc *man/support.BWS-package.Rd
