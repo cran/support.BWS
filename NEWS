@@ -1,0 +1,8 @@
+Changes to package support.BWS
+
+2014-03-13, version 0.1-1
+- Added two synthetic data sets: mfa and fruit.
+- Added argument row.renames to bws.dataset()
+
+2013-05-14, version 0.1-0
+- First release to CRAN.

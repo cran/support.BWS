@@ -9,7 +9,7 @@ This function creates a data set used for \code{bws.count()} in \pkg{support.BWS
 \usage{
 bws.dataset(respondent.dataset, response.type = 1,
             choice.sets, design.type = 1,
-            item.names = NULL)
+            item.names = NULL, row.renames = TRUE)
 }
 \arguments{
   \item{respondent.dataset}{
@@ -26,6 +26,9 @@ A value describing how to design the choice sets: \code{1} if the design assigne
 }
   \item{item.names}{
 A vector containing the names of items: if it takes \code{NULL}, default item names (i.e., \code{ITEM1}, \code{ITEM2}, ...) are used in the resultant data set.
+}
+  \item{row.renames}{
+A logical variable describing whether or not the row names of a data set created by this function are changed. If \code{TRUE}, integer values are assigned to the row names starting from \code{1}. If \code{FALSE}, the row names are not changed.
 }
 }
 \details{
@@ -116,12 +119,13 @@ dat1 <- bws.dataset(
 
 # analyze responses to BWS questions
 # counting approach
-bws.count(dat1)
+bws1 <- bws.count(dat1)
 # modeling approach
 # note: ITEM5 is excluded from fr1 to normalize its coefficient to zero
 fr1 <- RES ~ ITEM1 + ITEM2 + ITEM3 + ITEM4 + ITEM6 + ITEM7 +
              ITEM8 + ITEM9 + strata(STR)
-clogit(formula = fr1, data = dat1)
+clg1 <- clogit(formula = fr1, data = dat1)
+clg1
 
 
 ## case 2: BWS using a balanced incomplete block design
@@ -172,11 +176,13 @@ dat2 <- bws.dataset(
 
 # analyze responses to BWS questions
 # counting approach
-bws.count(dat2)
+bws2 <- bws.count(dat2)
+bws2
 # modeling approach
 # note: D is excluded from fr2 to normalized its coefficient to zero
 fr2 <- RES ~ A + B + C + E + F + G + strata(STR)
-clogit(fr2, data = dat2)
+clg2 <- clogit(fr2, data = dat2)
+clg2
 }
 \keyword{ datagen }
 \keyword{ survival }

@@ -1,4 +1,4 @@
-bws.dataset <- function(respondent.dataset, response.type = 1, choice.sets, design.type = 1, item.names = NULL)
+bws.dataset <- function(respondent.dataset, response.type = 1, choice.sets, design.type = 1, item.names = NULL, row.renames = TRUE)
 {
 # Name : bws.dataset
 # Title: Creating a data set suitable for BWS analysis on the basis of counting and modeling approaches 
@@ -12,6 +12,7 @@ bws.dataset <- function(respondent.dataset, response.type = 1, choice.sets, desi
 #                        = 1 if a OMED is used
 #                        = 2 if a BIBD is used
 #  item.names          a vector containing the names of items
+#  row.renames         a logical variable describing whether or not the row names of a data set created by this function are changed
 
 
 # set variables, vectors, and matrices
@@ -139,6 +140,12 @@ bws.dataset <- function(respondent.dataset, response.type = 1, choice.sets, desi
   if(is.null(item.names) == FALSE)
   {
     colnames(dataset)[8:(7 + numItems)] <- item.names
+  }
+
+  # change row names
+  if(row.renames == TRUE)
+  {
+    rownames(dataset) <- c(1:nrow(dataset))
   }
 
   # assign attributes to data set
