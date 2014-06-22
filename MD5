@@ -1,6 +1,6 @@
-6b39c4fcddf7b41838ba6d3d50d6dbff *DESCRIPTION
+5c309a624d47c615262aca96599328aa *DESCRIPTION
 5905ce91f4185f50abafbe09763a8b83 *NAMESPACE
-059ded2d78ecec5bb1b8ae6ad518a34d *NEWS
+553eafbd01c2356ad55dfe0e02aa5009 *NEWS
 74557e4d437608c638be55163f52c63d *R/bws.count.R
 3b7a2ed7555e178200c57afd4abc07e2 *R/bws.dataset.R
 0c73ef1069815a5584691df7a8b2e3a1 *R/bws.questionnaire.R
@@ -12,4 +12,4 @@
 358598f1725ab6d04d261694aaf3f36c *man/bws.questionnaire.Rd
 b6351ab5128148f2dca70e09ce745d88 *man/fruit.Rd
 8cea05daf7bd19c398efed7a2073804f *man/mfa.Rd
-b8714e4a57bdafe63bf314f09c0474cc *man/support.BWS-package.Rd
+5bfb617a28e7fa0fab3e63abb8fb799d *man/support.BWS-package.Rd

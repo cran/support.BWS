@@ -1,5 +1,8 @@
 Changes to package support.BWS
 
+2014-06-22, version 0.1-2
+- Changed maintainer's email address
+
 2014-03-13, version 0.1-1
 - Added two synthetic data sets: mfa and fruit.
 - Added argument row.renames to bws.dataset()

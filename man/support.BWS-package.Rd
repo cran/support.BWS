@@ -25,7 +25,7 @@ Pr(i, j) = \frac{exp(v_{i} - v_{j})}{\sum_{k=1}^{m}\sum_{l=1, k \neq l}^{m}exp(v
 \author{
 Hideo Aizaki
 
-Maintainer: Hideo Aizaki <aizaki@affrc.go.jp>
+Maintainer: Hideo Aizaki <azk-r@ec.hokudai.ac.jp>
 }
 \references{
 Auger P, Devinney TM, Louviere JJ (2007) Using best-worst scaling methodology to investigate consumer ethical beliefs across countries. Journal of Business Ethics, 70, 299--326.
