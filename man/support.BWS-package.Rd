@@ -20,7 +20,12 @@ There are two approaches to analyzing responses to object case BWS questions: a 
 The modeling approach uses discrete choice models to analyze responses. In the package, this approach is based on the understanding of respondents' behavior in the following situation (Finn and Louviere, 1992; Auger et al., 2007). Suppose that \eqn{m} items exist in a choice set (a question). The number of possible pairs in which item \eqn{i} is selected as the best and item \eqn{j} is selected as the worst (\eqn{i \neq j}) from \eqn{m} items is \eqn{m \times (m - 1)}. Respondents are assumed to have a utility (\eqn{v}) for each item. Further, they are assumed to select item \eqn{i} as the best and item \eqn{j} as the worst because the difference in utility between \eqn{i} and \eqn{j} represents the greatest utility difference. Under these assumptions, the probability of selecting item \eqn{i} as the best and item \eqn{j} as the worst is expressed as a conditional logit model:
 \deqn{
 Pr(i, j) = \frac{exp(v_{i} - v_{j})}{\sum_{k=1}^{m}\sum_{l=1, k \neq l}^{m}exp(v_{k} - v_{l})}.
-}}
+}
+
+\bold{Acknowledgments}
+
+This work was supported by JSPS KAKENHI Grant Number 25450341.
+}
 
 \author{
 Hideo Aizaki

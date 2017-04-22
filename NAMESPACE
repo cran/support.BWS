@@ -3,5 +3,6 @@ export(
 "bws.dataset",
 "bws.questionnaire"
 )
+importFrom("stats", "sd")
 S3method(print, bws.count)
 
