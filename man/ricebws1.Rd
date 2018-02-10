@@ -11,7 +11,7 @@ This dataset contains responses to Case 1 BWS questions about consumers' prefere
 data(ricebws1)
 }
 \format{
-  A data frame with 90 respondents on the following 16 variables.
+  A data frame with 90 respondents on the following 18 variables.
   \describe{
     \item{\code{id}}{Identification number of respondents.}
     \item{\code{b1}}{Item selected as the best in BWS question 1.}
@@ -29,6 +29,8 @@ data(ricebws1)
     \item{\code{b7}}{Item selected as the best in BWS question 7.}
     \item{\code{w7}}{Item selected as the worst in BWS question 7.}
     \item{\code{age}}{Respondents' age: 1 = <40; 2 = 40-<60; 3 = >=60}
+    \item{\code{hp}}{Highest price of rice per 5 kg that respondents have purchased for the last six months: 1 = < 1600 JPY; 2 = 1600-<2100; 3 = >=2100}
+    \item{\code{chem}}{Respondents' valuation of rice grown with low-chemicals: 1 if respondents value low-chemical rice and 0 otherwise}
   }
 }
 \author{

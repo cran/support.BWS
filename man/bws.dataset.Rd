@@ -9,7 +9,9 @@ This function creates a data set used for \code{bws.count()} in \pkg{support.BWS
 \usage{
 bws.dataset(respondent.dataset, response.type = 1,
             choice.sets, design.type = 1,
-            item.names = NULL, row.renames = TRUE)
+            item.names = NULL, row.renames = TRUE,
+            id = NULL, response = NULL,
+            model = "maxdiff", delete.best = FALSE)
 }
 \arguments{
   \item{respondent.dataset}{
@@ -30,6 +32,18 @@ A vector containing the names of items: if it takes \code{NULL}, default item na
   \item{row.renames}{
 A logical variable describing whether or not the row names of a data set created by this function are changed. If \code{TRUE}, integer values are assigned to the row names starting from \code{1}. If \code{FALSE}, the row names are not changed.
 }
+  \item{id}{
+A character showing the name of the respondent identification number variable used in the respondent data set.
+}
+  \item{response}{
+A vector containing the names of response variables in the respondent data set, showing the best and worst items selected in each BWS question.
+}
+  \item{model}{
+A character showing a type of data set created by this function: \code{"maxdiff"} for the maxdiff model and \code{"marginal"} for the marginal (sequential) model.
+}
+  \item{delete.best}{
+A logical value denoted by \code{TRUE} when deleting an item selected as the best in the worst choice set (that is, using a marginal sequential model) or \code{FALSE} when not doing so.
+}
 }
 \details{
 The respondent data set, in which each row corresponds to a respondent, has to be organized by users. The data set must contain the id variable in the first column, denoting the respondent's identification number, and the response variables in the subsequent columns, each indicating which items are selected as the best and the worst for each question. Although the names of the id and response variables are up to the discretion of the user, the response variables must be constructed such that the best alternates with the worst by question. For example, when there are seven BWS questions, the variables are \code{B1 W1 B2 W2 ... B7 W7}; here, \code{Bi} and \code{Wi} show which items are selected as the best and the worst in the \code{i}th question.
@@ -37,25 +51,66 @@ The respondent data set, in which each row corresponds to a respondent, has to b
 There are two types of data format related to response variables: one is a row number format, and the other is an item number format. In the former, the row numbers of the items selected as the best and the worst are stored in the response variables. In the latter, item numbers are stored in the response variables.
 
 The arguments \code{choice.sets}, \code{design.type}, and \code{item.names} are the same as those in the \code{bws.questionnaire()} function. However, \code{item.names} can take \code{NULL} (default), when default item names (i.e., \code{ITEM1}, \code{ITEM2}, ...) are used in the resultant data set. Further, the order of questions in the choice sets has to be the same as that in the respondent data set.
+
+Note that this function in version 0.2-0 and later versions of the package can create a data set for the marginal (sequential) model as well as that for the maxdiff model: \code{"maxdiff"} is assigned to the argument \code{model} when the maxdiff model is used for the analysis, or \code{"marginal"} is assigned when the marginal (sequential) model is used. Furthermore, \code{TRUE} is assigned to the argument \code{delete.best} when the marginal sequential model is used for the analysis.
 }
 \value{
-The function returns a data set containing the following variables:
-\item{ID}{A respondent's identification number, assigned according to the id variable in the respondent data set.}
-\item{Q}{A serial number of BWS questions.}
-\item{PAIR}{A serial number of possible pairs of the best and worst items for each question.}
-\item{BEST}{An item number treated as the best in the possible pairs of the best and worst items for each question.}
-\item{WORST}{An item number treated as the worst in the possible pairs of the best and worst items for each question.}
-\item{RES.B}{An item number selected as the best by respondents.} 
-\item{RES.W}{An item number selected as the worst by respondents.}
-\item{ITEMj}{State variables related to the possible pairs of the best and worst items: \code{1} if item \code{j} is treated as the best in the possible pair, \code{-1} if item \code{j} is treated as the worst in the possible pair, and \code{0} otherwise.}
-\item{RES}{Responses to BWS questions: \code{TRUE} if a possible pair of the best and worst items is selected by respondents and \code{FALSE} otherwise. This variable is used as a dependent variable in the model \code{formula} of \code{clogit()} in \pkg{survival} when analyzing responses to BWS questions.}
-\item{STR}{A stratification variable identifying each combination of respondent and question. This variable is also used in \code{formula} of \code{clogit()}.}
+This function returns a data set in data frame format for the maxdiff model or one for the marginal (sequential) model. The data set for the maxdiff model contains the following variables:
+\item{ID}{
+A respondent's identification number, assigned according to the id variable in the respondent data set.
+}
+\item{Q}{
+A serial number of BWS questions.
+}
+\item{PAIR}{
+A serial number of possible pairs of the best and worst items for each question.
+}
+\item{BEST}{
+An item number treated as the best in the possible pairs of the best and worst items for each question.
+}
+\item{WORST}{
+An item number treated as the worst in the possible pairs of the best and worst items for each question.
+}
+\item{RES.B}{
+An item number selected as the best by respondents.
+} 
+\item{RES.W}{
+An item number selected as the worst by respondents.
+}
+\item{ITEMj}{
+State variables related to the possible pairs of the best and worst items: \code{1} if item \code{j} is treated as the best in the possible pair, \code{-1} if item \code{j} is treated as the worst in the possible pair, and \code{0} otherwise. These variables are used as independent variables in the model \code{formula} of the \code{\link[survival]{clogit}} function in \pkg{survival} when analyzing responses to BWS questions.
+}
+\item{RES}{
+Responses to BWS questions: \code{TRUE} if a possible pair of the best and worst items is selected by respondents and \code{FALSE} otherwise. This variable is used as a dependent variable in the model \code{formula} of the \code{\link[survival]{clogit}} function in \pkg{survival} when analyzing responses to BWS questions.
+}
+\item{STR}{
+A stratification variable identifying each combination of respondent and question. This variable is also used in \code{formula} of the \code{\link[survival]{clogit}} function with the \code{\link[survival]{strata}} function.
+}
+
+The data set for the marginal (sequential) model contains the variables \code{ID}, \code{Q}, \code{RES.B}, \code{RES.W}, and \code{STR} mentioned above and the following variables:
+\item{ALT}{
+A serial number of alternatives for each question.
+}
+\item{BW}{
+A state variable that takes the value of \code{1} for the possible best items and \code{-1} for the possible worst items.
+}
+\item{Item}{
+An item number treated as the possible best or worst items for each question.
+}
+\item{RES}{
+Response to BWS questions: \code{TRUE} if a possible best or worst item is selected by respondents and \code{FALSE} otherwise. This variable is used as a dependent variable in the model \code{formula} of the \code{\link[survival]{clogit}} function in \pkg{survival} when analyzing responses to BWS questions.
+}
+\item{ITEMj}{
+State variables that takes the value of \code{1} for the possible best items and \code{-1} for the possible worst items. These variables are used as independent variables in the model \code{formula} of the \code{\link[survival]{clogit}} function in \pkg{survival} when analyzing responses to BWS questions.
+}
+
+Furthermore, the resultant data set includes respondent characteristic variables when the respondent data set has those variables.
 }
 \author{
 Hideo Aizaki
 }
 \seealso{
-\code{\link[support.BWS]{support.BWS-package}}, \code{\link[DoE.base]{oa.design}}, \code{\link[crossdes]{find.BIB}}, \code{\link[crossdes]{isGYD}}, \code{\link[survival]{clogit}}
+\code{\link[support.BWS]{support.BWS-package}}, \code{\link[DoE.base]{oa.design}}, \code{\link[crossdes]{find.BIB}}, \code{\link[crossdes]{isGYD}}, \code{\link[survival]{clogit}}, \code{\link[survival]{strata}}
 }
 \examples{
 ## load packages
@@ -63,7 +118,7 @@ require(DoE.base) # include oa.design() used to generate a two-level OMED
 require(crossdes) # include find.BIB() used to generate a BIBD
 require(survival) # include clogit() used to analyze responses
 
-## case 1: BWS using a two-level OMED
+## example 1: BWS using a two-level OMED
 ## suppose that ten respondents answered twelve BWS questions valuing nine items
 
 # create a two-level OMED with nine factors
@@ -109,7 +164,7 @@ res1 <- data.frame(
  B12 = c(2, 2, 1, 1, 1, 1, 3, 2, 1, 2),  # best item in question 12
  W12 = c(3, 3, 2, 3, 3, 2, 2, 3, 3, 3))  # worst item in question 12
 
-# create a data set for analysis 
+# create a data set for the maxdiff model analysis 
 #  by combining the choice sets and respondent data set
 dat1 <- bws.dataset(
  respondent.dataset = res1,
@@ -128,7 +183,7 @@ clg1 <- clogit(formula = fr1, data = dat1)
 clg1
 
 
-## case 2: BWS using a balanced incomplete block design
+## example 2: BWS using a balanced incomplete block design
 ## suppose that ten respondents answered seven BWS questions valuing seven items
 
 # create a BIBD with seven items, four items per question, and seven questions
@@ -165,7 +220,7 @@ res2 <- data.frame(
  B7 = c(2, 1, 3, 1, 3, 2, 3, 3, 2, 2),  # best item in question 7
  W7 = c(4, 4, 4, 4, 4, 1, 4, 1, 4, 4))  # worst item in question 7
 
-# create a data set for analysis
+# create a data set for the maxdiff model analysis
 #  by combining the choice sets and respondent data set
 dat2 <- bws.dataset(
  respondent.dataset = res2,
@@ -178,12 +233,19 @@ dat2 <- bws.dataset(
 # counting approach
 bws2 <- bws.count(dat2)
 bws2
+# the argument cl is set to 2 to generaet a data set
+#  of the S3 class 'bws.count2'
+bws2.2 <- bws.count(dat2, cl = 2)
+plot(bws2.2, score = "bw")
+barplot(bws2.2, score = "bw")
+sum(bws2.2)
+summary(bws2.2)
 # modeling approach
 # note: D is excluded from fr2 to normalized its coefficient to zero
 fr2 <- RES ~ A + B + C + E + F + G + strata(STR)
 clg2 <- clogit(fr2, data = dat2)
 clg2
+bws.sp(clg2, base = "D", order = TRUE)
 }
-\keyword{ datagen }
-\keyword{ survival }
+\keyword{ manip }
 

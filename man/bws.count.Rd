@@ -1,6 +1,11 @@
 \name{bws.count}
 \alias{bws.count}
 \alias{print.bws.count}
+\alias{plot.bws.count2}
+\alias{barplot.bws.count2}
+\alias{sum.bws.count2}
+\alias{summary.bws.count2}
+\alias{print.summary.bws.count2}
 \title{
 Calculating count-based BW scores
 }
@@ -8,56 +13,65 @@ Calculating count-based BW scores
 This function calculates various BW scores on the basis of a counting approach.
 }
 \usage{
-bws.count(data)
+bws.count(data, cl = 1)
 
 \method{print}{bws.count}(x, digits = max(3, getOption("digits") - 3), scientific = FALSE, ...)
+
+\method{plot}{bws.count2}(x, score = c("bw", "b", "w"), pos = 1, xlab = NULL, ylab = NULL, ...)
+
+\method{barplot}{bws.count2}(height, score = c("bw", "b", "w"), mfrow = NULL, ...)
+
+\method{sum}{bws.count2}(x, ...)
+
+\method{summary}{bws.count2}(object, ...)
+
+\method{print}{summary.bws.count2}(x, digits = max(3, getOption("digits") - 3), scientific = FALSE, ...)
 }
 \arguments{
   \item{data}{
 A data frame containing the output from \code{bws.dataset()}.
 }
-  \item{x}{
-An object of the S3 class \dQuote{bws.count}.
+  \item{cl}{
+A value describing the S3 class of the object created by this function: \code{1} for the S3 class \code{"bws.count"}, and \code{2} for the S3 class \code{"bws.count2"}.
+}
+  \item{x, height, object}{
+An object of the S3 class \code{"bws.count"} or \code{"bws.count2"}.
 }
   \item{digits}{
-The number of significant digits. See the \code{format()} function.
+The number of significant digits. See the \code{\link[base]{format}} function.
 }
   \item{scientific}{
-Scores are encoded in scientific format. See the \code{format()} function.
+Scores are encoded in scientific format. See the \code{\link[base]{format}} function.
+}
+  \item{score}{
+A character showing a type of the output from this function: \code{"b"} is assigned to this argument when the output is based on best scores, \code{"w"} is assigned when it is based on worst scores, or \code{"bw"} is assigned when it is based on best-minus-worst scores.
+}
+  \item{pos}{
+A value showing a position of labels for points in the plot. See the argument \code{pos} of the \code{\link[graphics]{text}} function.
+}
+  \item{xlab}{
+A character showing a label for the x axis.
+}
+  \item{ylab}{
+A character showing a label for the y axis.
+}
+  \item{mfrow}{
+A two-element vector \code{c(nr, nc)}: bar plots will be drawn in an \code{nr}-by-\code{nc} array on the device by row.
 }
   \item{\dots}{
-Arguments passed to the \code{format()} function.
+Arguments passed to a function used internally.
 }
 }
 \details{
-The counting approach calculates several types of scores on the basis of the number of times (the frequency or count) item \eqn{i} is selected as the best (\eqn{B_{in}}) and the worst (\eqn{W_{in}}) across all the questions for respondent \eqn{n}. These scores are roughly divided into two categories: disaggregated (individual-level) scores and aggregated (total-level) scores (Finn and Louviere, 1992; Lee et al., 2007; Cohen, 2009; Mueller and Rungie, 2009).
+This function calculates various BW scores on the basis of the counting approach. For details on the scores, refer to \code{\link[support.BWS]{support.BWS-package}}. 
 
-The first category includes a disaggregated BW score and its standardized score:
-\deqn{
-BW_{in} = B_{in} - W_{in},
-}
-\deqn{
-std.BW_{in} = \frac{BW_{in}}{r},
-}
-where \eqn{r} is the frequency with which item \eqn{i} appears across all questions.
+When using this function with the argument \code{cl = 1}, it returns an object of the S3 class \code{"bws.count"}, containing disaggregated scores and aggregated scores in list format. The first category includes disaggregated best (B), worst (W), best-minus-worst (BW), and standardized BW scoers. The second category includes aggregated B, W, BW, and standardized BW scores as well as the square root of the ratio of the aggregated B to the aggregated W and its standardized scores. The generic function \code{print()} is available for the S3 class \code{"bws.count"}. The \code{print()} shows a summary of disaggregated scores and a table of aggregated scores.
 
-The frequency with which item \eqn{i} is selected as the best across all questions for \eqn{N} respondents is defined as \eqn{B_{i}}. Similarly, the frequency with which item \eqn{i} is selected as the worst is defined as \eqn{W_{i}} (i.e., \eqn{B_{i} = \sum_{n=1}^{N} B_{in}}, \eqn{W_{i} = \sum_{n=1}^{N} W_{in}}). The second category includes the aggregated versions of \eqn{BW_{in}} and \eqn{std.BW_{in}}, as well as the square root of the ratio of \eqn{B_{i}} to \eqn{W_{i}} and its standardized score:
-\deqn{
-BW_{i} = B_{i} - W_{i},
-}
-\deqn{
-std.BW_{i} = \frac{BW_{i}}{Nr},
-}
-\deqn{
-sqrt.BW_{i} = \sqrt{\frac{B_{i}}{W_{i}}},
-}
-\deqn{
-std.sqrt.BW_{i} = \frac{sqrt.BW_{i}}{max.sqrt.BW_{i}},
-}
-where \eqn{max.sqrt.BW_{i}} is the maximum value of \eqn{sqrt.BW_{i}}. 
+When using this function with the argument \code{cl = 2}, it returns an object of the S3 class \code{"bws.count2"}, which inherits from the S3 class \code{"data.frame"}, including disaggregated B, W, BW, and standardized BW scores, respondent identification number variable, and respondent characteristic variables. The generic functions such as \code{plot()}, \code{barplot()}, \code{sum()}, and \code{summary()} are available for the S3 class \code{"bws.count2"}. The \code{plot()} draws the relationship between means and standard deviations of B, W, or BW scores. The \code{barplot()} draws the bar plots of B, W, or BW scores. The \code{sum()} returns the aggregated B, W, BW, and standardized BW scores in data frame format. The \code{summary()} calculates (1) aggregated B, W, BW, and standardized BW scores, (2) item ranks based on the BW score, (3) means of B, W, BW, and standardized BW scores, and (4) the square root of the aggregated B to the aggregated W and its standardized scores. 
+
 }
 \value{
-The output from \code{bws.count()} is an object of the S3 class \dQuote{bws.count}, containing three components:
+The output from \code{bws.count()} with the argument \code{cl = 1} is an object of the S3 class \code{"bws.count"}, containing three components:
 
 A list \code{disaggregate} contains five objects related to disaggregated scores.
 \item{ID}{A vector showing the respondent's identification number.}
@@ -79,25 +93,20 @@ A list \code{information} contains basic information related to the BWS question
 \item{nitems}{A variable showing the number of items.}
 \item{fitem}{A variable showing the frequency of each item in the choice sets.}
 \item{vnames}{A variable showing the names of each item.}
-}
-\references{
-Cohen E (2009) Applying best-worst scaling to wine marketing. International Journal of Wine Business Research, 21(1), 8--23.
 
-Finn A, Louviere JJ (1992) Determining the appropriate response to evidence of public concern: The case of food safety. Journal of Public Policy & Marketing, 11(1), 12--25.
+The output from \code{bws.count()} with the argument \code{cl = 2}, which is an object of the S3 class \code{"bws.count2"}, is a data frame containing respondent identification number variable, B score variables, W score variables, BW score variables, standardized BW score variables, and respondent characteristic variables. These scores are calculated by each respondent. 
 
-Lee JA, Soutar GN, Louviere J (2007) Measuring values using best-worst scaling: The LOV example. Psychology & Marketing, 24(12), 1043--1058.
+Note that the S3 class \code{"bws.count"} would be replaced by the S3 class \code{"bws.count2"} in future.
 
-Mueller S, Rungie C (2009) Is there more information in best-worst choice data?: Using the attitude heterogeneity structure to identify consumer segments. International Journal of Wine Business Research, 21(1), 24--40.
 }
 \author{
 Hideo Aizaki
 }
 \seealso{
-\code{\link[support.BWS]{bws.dataset}}
+\code{\link[support.BWS]{support.BWS-package}}, \code{\link[support.BWS]{bws.dataset}}
 }
 \examples{
 ## See examples in bws.dataset()
 }
-\keyword{ datagen }
-\keyword{ print }
+\keyword{ univar }
 
