@@ -55,14 +55,14 @@ Version 0.2-0 and later versions of the package are also available for the margi
 
 \bold{Acknowledgments}
 
-This work was supported by JSPS KAKENHI Grant Numbers 25450341 and 16K07886.
+This work was supported by JSPS KAKENHI Grant Numbers JP25450341 and JP16K07886.
 }
 
 \author{
 Hideo Aizaki
 }
 \references{
-Aizaki H, Nakatani T, Sato K (2014) \emph{Stated Preference Methods Using R}. CRC Press.
+Aizaki H, Nakatani T, Sato K (2014) \emph{Stated Preference Methods Using R}. CRC Press. \url{https://doi.org/10.1201/b17292}.
 
 Auger P, Devinney TM, Louviere JJ (2007) Using best-worst scaling methodology to investigate consumer ethical beliefs across countries. \emph{Journal of Business Ethics}, \bold{70}, 299--326. \url{https://doi.org/10.1007/s10551-006-9112-7}.
 
@@ -72,13 +72,15 @@ Cohen SH (2003) Maximum difference scaling: Improved measures of importance and 
 
 Cohen S, Neira L (2004) Measuring preference for product benefits across countries: Overcoming scale usage bias with maximum difference scaling. \emph{Excellence in International Research}, 1--22.
 
-Finn A, Louviere JJ (1992) Determining the appropriate response to evidence of public concern: The case of food safety. \emph{Journal of Public Policy & Marketing}, \bold{11}(2), 12--25. \url{http://www.jstor.org/stable/30000270}.
+Finn A, Louviere JJ (1992) Determining the appropriate response to evidence of public concern: The case of food safety. \emph{Journal of Public Policy & Marketing}, \bold{11}(2), 12--25. \url{https://doi.org/10.1177/074391569201100202}.
 
-Hensher DA, Rose JM, Greene WH (2015) \emph{Applied Choice Analysis}. 2nd Edition. Cambridge University Press.
+Hensher DA, Rose JM, Greene WH (2015) \emph{Applied Choice Analysis}. 2nd edition. Cambridge University Press. \url{https://doi.org/10.1017/CBO9781316136232}.
 
 Lee JA, Soutar GN, Louviere J (2007) Measuring values using best-worst scaling: The LOV example. \emph{Psychology & Marketing}, \bold{24}(12), 1043--1058. \url{https://doi.org/10.1002/mar.20197}.
 
 Lusk JL, Briggeman BC (2009) Food values. \emph{American Journal of Agricultural Economics}, \bold{91}(1), 184--196. \url{https://doi.org/10.1111/j.1467-8276.2008.01175.x}
+
+Louviere JJ, Flynn TN, Marley AAJ (2015) \emph{Best-Worst Scaling: Theory, Methods and Applications}. Cambridge University Press. \url{https://doi.org/10.1017/CBO9781107337855}.
 
 Mueller S, Rungie C (2009) Is there more information in best-worst choice data?: Using the attitude heterogeneity structure to identify consumer segments. \emph{International Journal of Wine Business Research}, \bold{21}(1), 24--40. \url{https://doi.org/10.1108/17511060910948017}.
 }

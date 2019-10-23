@@ -8,6 +8,98 @@ bws.dataset <- function(
   id = NULL,
   response = NULL,
   model = "maxdiff",
+  delete.best = FALSE,
+  version = NULL)
+{
+
+  data <- respondent.dataset
+  design <- choice.sets
+
+  if (is.null(version)) {
+    nversions <- 1
+  } else {
+    col.version.respondent <- which(colnames(data)   == version)
+    col.version.design     <- which(colnames(design) == version)
+    tab.version.respondent <- table(data[, version])
+    tab.version.design     <- table(design[, version])
+    nversions              <- length(tab.version.respondent)
+
+    if (!isTRUE(length(tab.version.design) == nversions)) {
+      stop("Number of versions in respondent dataset should be the same as that in choice sets")
+    }
+
+    if (!isTRUE(all.equal(1L:nversions, as.integer(names(tab.version.respondent))))) {
+      stop("Values of version variable in respondent dataset should be serial integers starting from 1")
+    }
+
+    if (!isTRUE(all.equal(1L:nversions, as.integer(names(tab.version.design))))) {
+      stop("Values of version variable in choice sets should be serial integers starting from 1")
+    }
+
+    if (nversions > 1) {
+      freq <- table(design[design[, col.version.design] == 1, -col.version.design])
+      for (i in 2:nversions) {
+        tmp <- table(design[design[, col.version.design] == i, -col.version.design])
+        if (!isTRUE(all.equal(freq, tmp))) {
+          stop("Frequency of item i in a version should be the same as that in the other version(s)")
+        }
+      }
+    }
+  }
+
+  rtn <- NULL
+
+  if (nversions == 1) {
+    if (!is.null(version)) {
+      design <- design[, -col.version.design]
+    }
+    rtn <- bws.dataset.base(
+             respondent.dataset = data,
+             response.type      = response.type,
+             choice.sets        = design,
+             design.type        = design.type,
+             item.names         = item.names,
+             row.renames        = row.renames,
+             id                 = id, 
+             response           = response,
+             model              = model,
+             delete.best        = delete.best)
+  } else {
+    for (i in 1:nversions) {
+      sub.respondent <- data[data[, col.version.respondent] == i, ]
+      sub.design     <- design[design[, col.version.design] == i, -col.version.design]
+      sub.bwsdataset <- bws.dataset.base(
+             respondent.dataset = sub.respondent,
+             response.type      = response.type,
+             choice.sets        = sub.design,
+             design.type        = design.type,
+             item.names         = item.names,
+             row.renames        = row.renames,
+             id                 = id, 
+             response           = response,
+             model              = model,
+             delete.best        = delete.best)
+    rtn <- rbind(rtn, sub.bwsdataset)
+    }
+  attributes(rtn)$nrespondents <- nrow(data)
+  attributes(rtn)$data <- data
+  }
+
+  rtn
+
+}
+
+
+bws.dataset.base <- function(
+  respondent.dataset,
+  response.type = 1,
+  choice.sets,
+  design.type = 1,
+  item.names = NULL,
+  row.renames = TRUE,
+  id = NULL,
+  response = NULL,
+  model = "maxdiff",
   delete.best = FALSE)
 {
 

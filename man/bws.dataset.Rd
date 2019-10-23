@@ -11,7 +11,8 @@ bws.dataset(respondent.dataset, response.type = 1,
             choice.sets, design.type = 1,
             item.names = NULL, row.renames = TRUE,
             id = NULL, response = NULL,
-            model = "maxdiff", delete.best = FALSE)
+            model = "maxdiff", delete.best = FALSE,
+            version = NULL)
 }
 \arguments{
   \item{respondent.dataset}{
@@ -44,6 +45,9 @@ A character showing a type of data set created by this function: \code{"maxdiff"
   \item{delete.best}{
 A logical value denoted by \code{TRUE} when deleting an item selected as the best in the worst choice set (that is, using a marginal sequential model) or \code{FALSE} when not doing so.
 }
+  \item{version}{
+A character showing the name of the version variable used in the respondent dataset and choice sets.
+}
 }
 \details{
 The respondent data set, in which each row corresponds to a respondent, has to be organized by users. The data set must contain the id variable in the first column, denoting the respondent's identification number, and the response variables in the subsequent columns, each indicating which items are selected as the best and the worst for each question. Although the names of the id and response variables are up to the discretion of the user, the response variables must be constructed such that the best alternates with the worst by question. For example, when there are seven BWS questions, the variables are \code{B1 W1 B2 W2 ... B7 W7}; here, \code{Bi} and \code{Wi} show which items are selected as the best and the worst in the \code{i}th question.
@@ -51,6 +55,8 @@ The respondent data set, in which each row corresponds to a respondent, has to b
 There are two types of data format related to response variables: one is a row number format, and the other is an item number format. In the former, the row numbers of the items selected as the best and the worst are stored in the response variables. In the latter, item numbers are stored in the response variables.
 
 The arguments \code{choice.sets}, \code{design.type}, and \code{item.names} are the same as those in the \code{bws.questionnaire()} function. However, \code{item.names} can take \code{NULL} (default), when default item names (i.e., \code{ITEM1}, \code{ITEM2}, ...) are used in the resultant data set. Further, the order of questions in the choice sets has to be the same as that in the respondent data set.
+
+The argument \code{version} is set when two or more versions of the choice sets are used. The version variable must be included in the respondent dataset and choice sets. The variable denotes the serial integer number of versions starting from 1.
 
 Note that this function in version 0.2-0 and later versions of the package can create a data set for the marginal (sequential) model as well as that for the maxdiff model: \code{"maxdiff"} is assigned to the argument \code{model} when the maxdiff model is used for the analysis, or \code{"marginal"} is assigned when the marginal (sequential) model is used. Furthermore, \code{TRUE} is assigned to the argument \code{delete.best} when the marginal sequential model is used for the analysis.
 }
@@ -113,6 +119,7 @@ Hideo Aizaki
 \code{\link[support.BWS]{support.BWS-package}}, \code{\link[DoE.base]{oa.design}}, \code{\link[crossdes]{find.BIB}}, \code{\link[crossdes]{isGYD}}, \code{\link[survival]{clogit}}, \code{\link[survival]{strata}}
 }
 \examples{
+\dontrun{
 ## load packages
 require(DoE.base) # include oa.design() used to generate a two-level OMED
 require(crossdes) # include find.BIB() used to generate a BIBD
@@ -246,6 +253,7 @@ fr2 <- RES ~ A + B + C + E + F + G + strata(STR)
 clg2 <- clogit(fr2, data = dat2)
 clg2
 bws.sp(clg2, base = "D", order = TRUE)
+}
 }
 \keyword{ manip }
 

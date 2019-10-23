@@ -1,0 +1,18 @@
+bibentry(
+  bibtype = "Book",
+  title   = "Stated Preference Methods Using R",
+  author  = c(person("Hideo", "Aizaki"), 
+              person("Tomoaki", "Nakatani"),
+              person("Kazuo", "Sato")),
+  year         = "2014",
+  doi          = "10.1201/b17292",
+  publisher    = "CRC Press")
+
+bibentry(
+  bibtype = "Manual",
+  title   = "{support.BWS}: Basic Functions for Supporting an Implementation of Best-Worst Scaling",
+  author  = "Hideo Aizaki",
+  year    = "2019",
+  note    = "R package version 0.2-1",
+  url     = "https://CRAN.R-project.org/package=support.BWS")
+
