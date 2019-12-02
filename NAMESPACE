@@ -2,10 +2,12 @@ export(
 "bws.count",
 "bws.dataset",
 "bws.questionnaire",
+"bws.response",
 "bws.sp"
 )
 
-importFrom("stats", "sd", "reshape", "model.matrix", "contr.sum", "na.fail")
+importFrom("stats", "sd", "reshape", "model.matrix",
+           "contr.sum", "na.fail", "runif")
 importFrom("graphics", "plot", "barplot", "text", "par")
 
 S3method("print", "bws.count")

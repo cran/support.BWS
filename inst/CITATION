@@ -1,18 +1,33 @@
-bibentry(
-  bibtype = "Book",
-  title   = "Stated Preference Methods Using R",
-  author  = c(person("Hideo", "Aizaki"), 
-              person("Tomoaki", "Nakatani"),
-              person("Kazuo", "Sato")),
-  year         = "2014",
-  doi          = "10.1201/b17292",
-  publisher    = "CRC Press")
+citHeader("To cite support.BWS in publications use:")
 
-bibentry(
-  bibtype = "Manual",
-  title   = "{support.BWS}: Basic Functions for Supporting an Implementation of Best-Worst Scaling",
-  author  = "Hideo Aizaki",
-  year    = "2019",
-  note    = "R package version 0.2-1",
-  url     = "https://CRAN.R-project.org/package=support.BWS")
+citEntry(
+  entry  = "Manual",
+  title  = "{support.BWS: Tools for Case 1 Best-Worst Scaling}",
+  author = "Hideo Aizaki",
+  year   = "2019",
+  note   = "R package version 0.3-0",
+  url    = "https://CRAN.R-project.org/package=support.BWS",
+
+  textVersion =
+  paste("Aizaki H (2019).",
+        "support.BWS: Tools for Case 1 Best-Worst Scaling.",
+        "R package version 0.3-0.",
+        "URL https://CRAN.R-project.org/package=support.BWS.")
+)
+
+citEntry(
+  entry     = "Book",
+  title     = "Stated Preference Methods Using R",
+  author    = "Hideo Aizaki and Tomoaki Nakatani and Kazuo Sato",
+  year      = "2014",
+  doi       = "10.1201/b17292",
+  publisher = "CRC Press",
+
+  textVersion =
+  paste("Aizaki H, Nakatani T, Sato K (2014).",
+        "Stated Preference Methods Using R.",
+        "CRC Press.",
+        "DOI https://doi.org/0.1201/b17292.")
+)
+
 

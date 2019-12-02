@@ -3,7 +3,7 @@
 \alias{support.BWS}
 \docType{package}
 \title{
-Basic functions for supporting an implementation of best-worst scaling
+Tools for Case 1 best-worst scaling
 }
 \description{
 The package provides three basic functions that support an implementation of object case (Case 1) best-worst scaling: one for converting a two-level orthogonal main-effect design/balanced incomplete block design into questions; one for creating a data set suitable for analysis; and one for calculating count-based scores.
@@ -78,7 +78,8 @@ Hensher DA, Rose JM, Greene WH (2015) \emph{Applied Choice Analysis}. 2nd editio
 
 Lee JA, Soutar GN, Louviere J (2007) Measuring values using best-worst scaling: The LOV example. \emph{Psychology & Marketing}, \bold{24}(12), 1043--1058. \url{https://doi.org/10.1002/mar.20197}.
 
-Lusk JL, Briggeman BC (2009) Food values. \emph{American Journal of Agricultural Economics}, \bold{91}(1), 184--196. \url{https://doi.org/10.1111/j.1467-8276.2008.01175.x}
+Lusk JL, Briggeman BC (2009) Food values. 
+\emph{American Journal of Agricultural Economics}, \bold{91}(1), 184--196. 
 
 Louviere JJ, Flynn TN, Marley AAJ (2015) \emph{Best-Worst Scaling: Theory, Methods and Applications}. Cambridge University Press. \url{https://doi.org/10.1017/CBO9781107337855}.
 
