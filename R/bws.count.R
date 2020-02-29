@@ -7,6 +7,9 @@ bws.count <- function(
   if (cl == 1){
     bws.count1(data = data)
   } else {
+    if (attributes(data)$model == "sequential") {
+      attributes(data)$model = "marginal"
+    }
     bws.count2(data = data)
   }
 
@@ -198,6 +201,9 @@ barplot.bws.count2 <-function(
   height,
   score = c("bw", "b", "w"),
   mfrow = NULL,
+  mean = FALSE,
+  error.bar = NULL,
+  conf.level = 0.95,
   ...)
 {
 
@@ -205,25 +211,66 @@ barplot.bws.count2 <-function(
 
   data <- height
 
-  SCOREtable <- bws.table(x = data, score = score)
+  n <- nrow(data)
 
-  if (is.null(mfrow)) {
+  if (isTRUE(mean)) {
+    subdata <- data[, attributes(data)$sbw.names]
+    mean    <- colMeans(subdata)
+    order   <- order(mean)
+
+    sd      <- apply(X = subdata, MARGIN = 2, FUN = sd)
+    se      <- sd/sqrt(n)
+    t       <- qt(p = 1 - (1- conf.level)/2, df = n - 1)
+
+    if (is.null(error.bar)) {
+      upper <- mean
+      lower <- mean
+    } else if (error.bar == "ci") {
+      upper <- mean + t * se
+      lower <- mean - t * se
+    } else if (error.bar == "se") {
+      upper <- mean + se
+      lower <- mean - se
+    } else if (error.bar == "sd") {
+      upper <- mean + sd
+      lower <- mean - sd
+    }
+
+    rtn <- data.frame(mean, sd, se, upper, lower, order)
+
+    max.upper <- max(upper)
+    min.lower <- min(lower)
+    y <- barplot(height = mean[order], horiz = TRUE,
+                 xlim = c(min.lower * 1.2, max.upper * 1.2),
+                 xlab = "Standardized best-worst score", ...)
+
+    if (!is.null(error.bar)) {
+      arrows(x0 = lower[order], y0 = y, x1 = upper[order], y1 = y,
+             angle = 90, code = 3, length = 0.1)
+    }
+
+    invisible(rtn)
+
+  } else {
+    SCOREtable <- bws.table(x = data, score = score)
+
+    if (is.null(mfrow)) {
       mfrow <- c(3, ceiling(length(attributes(data)$fitem)/3))  
+    }
+
+    par(mfrow = mfrow)
+
+    for(i in 1:length(SCOREtable)){
+      barplot(height = SCOREtable[[i]],
+              main = names(SCOREtable)[i],
+              xlab = "Score",
+              ylab = "Respondents",
+              ylim = c(0, max(unlist(SCOREtable))),
+              ...)
+    }
+
+    invisible(SCOREtable)
   }
-
-  par(mfrow = mfrow)
-
-  for(i in 1:length(SCOREtable)){
-    barplot(height = SCOREtable[[i]],
-            main = names(SCOREtable)[i],
-            xlab = "Score",
-            ylab = "Respondents",
-            ylim = c(0, max(unlist(SCOREtable))),
-            ...)
-  }
-
-  invisible(SCOREtable)
-
 }
 
 
@@ -387,9 +434,8 @@ print.summary.bws.count2 <- function(
   ...)
 {
 
-  cat("\nNumber of respondents =", attributes(x)$nrespondets, "\n\n")
+  cat("Number of respondents =", attributes(x)$nrespondets, "\n\n")
   base::print.data.frame(x, digits = digits, scientific = scientific)
-  cat("\n")
 
   invisible(x)
 

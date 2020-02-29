@@ -1,5 +1,11 @@
 Changes to package support.BWS
 
+2020-02-29, version 0.4-0
+- Added a function bws.apollo().
+- Modified functions bws.dataset(), bws.count(), and bws.response().
+- Modified barplot for S3 class 'bws.count2'.
+- Revised help files.
+
 2019-12-02, version 0.3-0
 - Shortened the title.
 - Added a function bws.response().

@@ -74,7 +74,10 @@ bws.response <- function(
 # return simple dataset
   rtn <- reshape(simple.dataset, v.names = c("B", "W"), idvar = "id",
                  timevar = "Q", sep = "", direction = "wide")
-  return(data.frame(rtn))
+  rtn <- data.frame(rtn)
+  row.names(rtn) <- NULL
+
+  return(rtn)
 }
 
 ##########################################################################

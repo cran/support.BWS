@@ -9,9 +9,11 @@
 \title{
 Calculating count-based BW scores
 }
+
 \description{
 This function calculates various BW scores on the basis of a counting approach.
 }
+
 \usage{
 bws.count(data, cl = 1)
 
@@ -19,7 +21,8 @@ bws.count(data, cl = 1)
 
 \method{plot}{bws.count2}(x, score = c("bw", "b", "w"), pos = 1, xlab = NULL, ylab = NULL, ...)
 
-\method{barplot}{bws.count2}(height, score = c("bw", "b", "w"), mfrow = NULL, ...)
+\method{barplot}{bws.count2}(height, score = c("bw", "b", "w"), mfrow = NULL, mean = FALSE, 
+error.bar = NULL, conf.level = 0.95, ...)
 
 \method{sum}{bws.count2}(x, ...)
 
@@ -58,18 +61,29 @@ A character showing a label for the y axis.
   \item{mfrow}{
 A two-element vector \code{c(nr, nc)}: bar plots will be drawn in an \code{nr}-by-\code{nc} array on the device by row.
 }
+  \item{mean}{
+A logical value denoted by \code{TRUE} when drawing a bar plot of the aggregated standardized BW scores or \code{FALSE} (default) when drawing bar plots of B, W, or BW scores.
+}
+  \item{error.bar}{
+A character shoiwng a type of error bar adding on the bar plot of the aggregated standardized BW scores: \code{"sd"} for the standard deviation; \code{"se"} for the standard error; \code{"ci"} for the confidence interval; and \code{NULL} (default) for none.
+}
+  \item{conf.level}{
+A value showing the confidence level when adding the confidence interval on the bar plot using \code{error.bar}.
+}
   \item{\dots}{
 Arguments passed to a function used internally.
 }
 }
+
 \details{
 This function calculates various BW scores on the basis of the counting approach. For details on the scores, refer to \code{\link[support.BWS]{support.BWS-package}}. 
 
 When using this function with the argument \code{cl = 1}, it returns an object of the S3 class \code{"bws.count"}, containing disaggregated scores and aggregated scores in list format. The first category includes disaggregated best (B), worst (W), best-minus-worst (BW), and standardized BW scoers. The second category includes aggregated B, W, BW, and standardized BW scores as well as the square root of the ratio of the aggregated B to the aggregated W and its standardized scores. The generic function \code{print()} is available for the S3 class \code{"bws.count"}. The \code{print()} shows a summary of disaggregated scores and a table of aggregated scores.
 
-When using this function with the argument \code{cl = 2}, it returns an object of the S3 class \code{"bws.count2"}, which inherits from the S3 class \code{"data.frame"}, including disaggregated B, W, BW, and standardized BW scores, respondent identification number variable, and respondent characteristic variables. The generic functions such as \code{plot()}, \code{barplot()}, \code{sum()}, and \code{summary()} are available for the S3 class \code{"bws.count2"}. The \code{plot()} draws the relationship between means and standard deviations of B, W, or BW scores. The \code{barplot()} draws the bar plots of B, W, or BW scores. The \code{sum()} returns the aggregated B, W, BW, and standardized BW scores in data frame format. The \code{summary()} calculates (1) aggregated B, W, BW, and standardized BW scores, (2) item ranks based on the BW score, (3) means of B, W, BW, and standardized BW scores, and (4) the square root of the aggregated B to the aggregated W and its standardized scores. 
+When using this function with the argument \code{cl = 2}, it returns an object of the S3 class \code{"bws.count2"}, which inherits from the S3 class \code{"data.frame"}, including disaggregated B, W, BW, and standardized BW scores, respondent identification number variable, and respondent characteristic variables. The generic functions such as \code{plot()}, \code{barplot()}, \code{sum()}, and \code{summary()} are available for the S3 class \code{"bws.count2"}. The \code{plot()} draws the relationship between means and standard deviations of B, W, or BW scores. The \code{barplot()} draws the bar plot of the aggregated standardized BW scores or the bar plots of B, W, or BW scores. The \code{sum()} returns the aggregated B, W, BW, and standardized BW scores in data frame format. The \code{summary()} calculates (1) aggregated B, W, BW, and standardized BW scores, (2) item ranks based on the BW score, (3) means of B, W, BW, and standardized BW scores, and (4) the square root of the aggregated B to the aggregated W and its standardized scores. 
 
 }
+
 \value{
 The output from \code{bws.count()} with the argument \code{cl = 1} is an object of the S3 class \code{"bws.count"}, containing three components:
 

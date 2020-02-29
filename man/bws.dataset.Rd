@@ -40,10 +40,10 @@ A character showing the name of the respondent identification number variable us
 A vector containing the names of response variables in the respondent data set, showing the best and worst items selected in each BWS question.
 }
   \item{model}{
-A character showing a type of data set created by this function: \code{"maxdiff"} for the maxdiff model and \code{"marginal"} for the marginal (sequential) model.
+A character showing a type of data set created by this function: \code{"maxdiff"} for the maxdiff model; \code{"marginal"} for the marginal model; and  \code{"sequential"} for the marginal sequential model.
 }
   \item{delete.best}{
-A logical value denoted by \code{TRUE} when deleting an item selected as the best in the worst choice set (that is, using a marginal sequential model) or \code{FALSE} when not doing so.
+A logical value denoted by \code{TRUE} when deleting an item selected as the best in the worst choice set (that is, using a marginal sequential model) or \code{FALSE} when not doing so. The argument is deprecated. Please use the argument \code{model} instead.
 }
   \item{version}{
 A character showing the name of the version variable used in the respondent dataset and choice sets.
@@ -58,7 +58,7 @@ The arguments \code{choice.sets}, \code{design.type}, and \code{item.names} are 
 
 The argument \code{version} is set when two or more versions of the choice sets are used. The version variable must be included in the respondent dataset and choice sets. The variable denotes the serial integer number of versions starting from 1.
 
-Note that this function in version 0.2-0 and later versions of the package can create a data set for the marginal (sequential) model as well as that for the maxdiff model: \code{"maxdiff"} is assigned to the argument \code{model} when the maxdiff model is used for the analysis, or \code{"marginal"} is assigned when the marginal (sequential) model is used. Furthermore, \code{TRUE} is assigned to the argument \code{delete.best} when the marginal sequential model is used for the analysis.
+Note that this function in version 0.2-0 and later versions of the package can create a data set for the marginal (sequential) model as well as that for the maxdiff model: \code{"maxdiff"} is assigned to the argument \code{model} when the maxdiff model is used for the analysis; \code{"marginal"} is assigned when the marginal model is used; and \code{"sequential"} is assigned when the marginal sequential model is used. Furthermore, the argument \code{delete.best} is deprecated: please use the argument \code{model = "sequential"} instead.
 }
 \value{
 This function returns a data set in data frame format for the maxdiff model or one for the marginal (sequential) model. The data set for the maxdiff model contains the following variables:
@@ -124,6 +124,8 @@ Hideo Aizaki
 require(DoE.base) # include oa.design() used to generate a two-level OMED
 require(crossdes) # include find.BIB() used to generate a BIBD
 require(survival) # include clogit() used to analyze responses
+
+if(getRversion() >= "3.6.0") RNGkind(sample.kind = "Rounding")
 
 ## example 1: BWS using a two-level OMED
 ## suppose that ten respondents answered twelve BWS questions valuing nine items

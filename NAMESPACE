@@ -1,4 +1,5 @@
 export(
+"bws.apollo",
 "bws.count",
 "bws.dataset",
 "bws.questionnaire",
@@ -6,9 +7,10 @@ export(
 "bws.sp"
 )
 
-importFrom("stats", "sd", "reshape", "model.matrix",
+importFrom("stats", "sd", "reshape", "model.matrix", "qt",
            "contr.sum", "na.fail", "runif")
-importFrom("graphics", "plot", "barplot", "text", "par")
+importFrom("graphics", "plot", "barplot", "text", "par",
+           "arrows")
 
 S3method("print", "bws.count")
 S3method("plot", "bws.count2")

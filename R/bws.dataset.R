@@ -12,6 +12,18 @@ bws.dataset <- function(
   version = NULL)
 {
 
+  model.original <- model
+  if (isTRUE(delete.best)) {
+    warning("Argument delete.best is deprecated. Please use argument model. Argument model was set as 'sequential'")
+    model <- "sequential"
+  }
+  if (model == "sequential") {
+    model.original <- "sequential"
+    model <- "marginal"
+    delete.best <- TRUE
+  }
+
+
   data <- respondent.dataset
   design <- choice.sets
 
@@ -85,10 +97,13 @@ bws.dataset <- function(
   attributes(rtn)$data <- data
   }
 
+  if (model.original == "sequential") attributes(rtn)$model <- "sequential"
+
   rtn
 
 }
 
+###########################################################
 
 bws.dataset.base <- function(
   respondent.dataset,
@@ -242,16 +257,16 @@ bws.dataset.base <- function(
     # create STR variable: stratification variable in clogit()
     dataset$STR <- dataset$ID * 100 + dataset$Q
 
-
+####
     if (is.null(response)) { # dataset in version 0.1-x
       # change order of variables
-      dataset <- dataset[, c("Q", "PAIR", "ID", "RES.B", "RES.W",
-                             "BEST", "WORST", item.names.temp,
-                             "RES", "STR", covariate.names)]
-
+      dataset <- dataset[, c("ID", "Q", "PAIR", 
+                             "BEST", "WORST", "RES.B", "RES.W", "RES",
+                             item.names.temp, "STR", covariate.names)]
+####
       # relabel item variables
       if(is.null(item.names) == FALSE) {
-        colnames(dataset)[8:(7 + numItems)] <- item.names
+        colnames(dataset)[9:(8 + numItems)] <- item.names
       } else {
         item.names <- item.names.temp
       }

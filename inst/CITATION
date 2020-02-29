@@ -1,18 +1,21 @@
 citHeader("To cite support.BWS in publications use:")
 
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
 citEntry(
   entry  = "Manual",
   title  = "{support.BWS: Tools for Case 1 Best-Worst Scaling}",
   author = "Hideo Aizaki",
-  year   = "2019",
-  note   = "R package version 0.3-0",
+  year   = year,
+  note   = vers,
   url    = "https://CRAN.R-project.org/package=support.BWS",
 
   textVersion =
-  paste("Aizaki H (2019).",
-        "support.BWS: Tools for Case 1 Best-Worst Scaling.",
-        "R package version 0.3-0.",
-        "URL https://CRAN.R-project.org/package=support.BWS.")
+  paste("Aizaki H (",year, "). ",
+        "support.BWS: Tools for Case 1 Best-Worst Scaling. ",
+        vers, ". ",
+        "URL https://CRAN.R-project.org/package=support.BWS.", sep="")
 )
 
 citEntry(
@@ -27,7 +30,7 @@ citEntry(
   paste("Aizaki H, Nakatani T, Sato K (2014).",
         "Stated Preference Methods Using R.",
         "CRC Press.",
-        "DOI https://doi.org/0.1201/b17292.")
+        "DOI https://doi.org/10.1201/b17292.")
 )
 
 
