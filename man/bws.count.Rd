@@ -21,7 +21,7 @@ bws.count(data, cl = 1)
 
 \method{plot}{bws.count2}(x, score = c("bw", "b", "w"), pos = 1, xlab = NULL, ylab = NULL, ...)
 
-\method{barplot}{bws.count2}(height, score = c("bw", "b", "w"), mfrow = NULL, mean = FALSE, 
+\method{barplot}{bws.count2}(height, score = c("bw", "b", "w", "sbw"), mfrow = NULL, mean = FALSE, 
 error.bar = NULL, conf.level = 0.95, ...)
 
 \method{sum}{bws.count2}(x, ...)
@@ -47,7 +47,7 @@ The number of significant digits. See the \code{\link[base]{format}} function.
 Scores are encoded in scientific format. See the \code{\link[base]{format}} function.
 }
   \item{score}{
-A character showing a type of the output from this function: \code{"b"} is assigned to this argument when the output is based on best scores, \code{"w"} is assigned when it is based on worst scores, or \code{"bw"} is assigned when it is based on best-minus-worst scores.
+A character showing a type of the output from this function: \code{"b"} is assigned to this argument when the output is based on best scores, \code{"w"} is assigned when it is based on worst scores, \code{"bw"} is assigned when it is based on best-minus-worst scores, or \code{"sbw"} is assigned when it is based on standardized best-minus-worst scores. 
 }
   \item{pos}{
 A value showing a position of labels for points in the plot. See the argument \code{pos} of the \code{\link[graphics]{text}} function.

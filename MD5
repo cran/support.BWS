@@ -1,9 +1,9 @@
-87c8177b6542c8b7863c54cc0c0eb5b1 *DESCRIPTION
+52187d8788ca44aa3a844b66f146149e *DESCRIPTION
 81db7b14b34404774ca26870174c5e96 *NAMESPACE
-6ab09d9c35b1ad717bbd04b07c7c829d *NEWS
+d92103b39d71d56a3ee84aedbb490e37 *NEWS
 c766709f0fd7377ad4aa435b6b8ec2d9 *R/bws.apollo.R
-968304c507b0abb9ceaf3d369c11a871 *R/bws.count.R
-8cdb3f7814a11187d1d0a839ae34c740 *R/bws.dataset.R
+23b7bdba36efcf5c3bba95503006e087 *R/bws.count.R
+50707ce7be8c6ea3f7c97a3bf401b3db *R/bws.dataset.R
 0c73ef1069815a5584691df7a8b2e3a1 *R/bws.questionnaire.R
 142546b90b439e839816f2cda79de1b2 *R/bws.response.R
 534baaff834eeba635fded71ed28a95d *R/bws.sp.R
@@ -13,7 +13,7 @@ c766709f0fd7377ad4aa435b6b8ec2d9 *R/bws.apollo.R
 24e205b4d0a027063fd34ee1ef39fda4 *data/ricebws1.rda
 99b8325e1dcd86fb80d3d373a4265732 *inst/CITATION
 7d3c31839a026d26fa12c5eeeaf91790 *man/bws.apollo.Rd
-19fc5786d406115c94b7dec150800ae2 *man/bws.count.Rd
+d50ae001c5d832a3a1d91477e98f865f *man/bws.count.Rd
 6df736f7bd330049d5fd08c4f02c6cd8 *man/bws.dataset.Rd
 766e75e15148ed1e43cf2332c396ef74 *man/bws.questionnaire.Rd
 0c7ae481d7a1f5732e9dc0bf82adf453 *man/bws.response.Rd

@@ -393,6 +393,8 @@ bws.dataset.base <- function(
   attributes(dataset)$respondent.characteristics <- covariate.names
   attributes(dataset)$data         <- respondent.dataset
 
+  class(dataset) <- c("bwsdataset", "data.frame")
+
   return(dataset)
 
 }

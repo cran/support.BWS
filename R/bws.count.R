@@ -199,7 +199,7 @@ function (
 ##############################################
 barplot.bws.count2 <-function(
   height,
-  score = c("bw", "b", "w"),
+  score = c("bw", "b", "w", "sbw"),
   mfrow = NULL,
   mean = FALSE,
   error.bar = NULL,
@@ -214,7 +214,22 @@ barplot.bws.count2 <-function(
   n <- nrow(data)
 
   if (isTRUE(mean)) {
-    subdata <- data[, attributes(data)$sbw.names]
+
+    if (score == "sbw") {
+      sub.var.names <- attributes(data)$sbw.names
+      xlabel <- "Standardized best-worst score"
+    } else if (score == "bw") {
+      sub.var.names <- attributes(data)$bw.names
+      xlabel <- "Best-worst score"
+    } else if (score == "b") {
+      sub.var.names <- attributes(data)$b.names
+      xlabel <- "Best score"
+    } else {
+      sub.var.names <- attributes(data)$w.names
+      xlabel <- "Worst score"
+    }
+
+    subdata <- data[, sub.var.names]
     mean    <- colMeans(subdata)
     order   <- order(mean)
 
@@ -240,9 +255,17 @@ barplot.bws.count2 <-function(
 
     max.upper <- max(upper)
     min.lower <- min(lower)
+
+    if (score == "bw" || score == "sbw") {
+      xlimit <- c(min.lower * 1.1, max.upper * 1.1)
+    } else {
+      xlimit <- c(0, max.upper * 1.1)
+    }
+
     y <- barplot(height = mean[order], horiz = TRUE,
-                 xlim = c(min.lower * 1.2, max.upper * 1.2),
-                 xlab = "Standardized best-worst score", ...)
+                 xlim = xlimit,
+                 xlab = xlabel,
+                 ...)
 
     if (!is.null(error.bar)) {
       arrows(x0 = lower[order], y0 = y, x1 = upper[order], y1 = y,
@@ -252,6 +275,10 @@ barplot.bws.count2 <-function(
     invisible(rtn)
 
   } else {
+    if (score == "sbw") {
+      stop(message = "'sbw' is valid only when mean = TRUE")
+    }
+
     SCOREtable <- bws.table(x = data, score = score)
 
     if (is.null(mfrow)) {
