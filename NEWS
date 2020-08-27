@@ -1,5 +1,9 @@
 Changes to package support.BWS
 
+2020-08-25, version 0.4-2
+- Modified function bws.sp().
+- Revised help file.
+
 2020-04-12, version 0.4-1
 - Modified functions bws.dataset() and bws.count().
 - Revised help file.

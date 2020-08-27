@@ -11,7 +11,7 @@ bws.sp(object, base, coef = NULL, order = FALSE, decreasing = FALSE, ...)
 }
 \arguments{
   \item{object}{
-A object containing the output from the function \code{\link[survival]{clogit}} in \pkg{survival}.
+An output from the function \code{\link[survival]{clogit}} in \pkg{survival} or vector/matrix/data frame containing estimates.
 }
   \item{base}{
 A character showing the base item.
@@ -34,7 +34,7 @@ Arguments passed to a function used internally.
 This function calculates a share of preference for item \eqn{i}. For details on the shares of preference, refer to \code{\link[support.BWS]{support.BWS-package}}. Althoug this function is developed for the function \code{\link[survival]{clogit}} in the \pkg{survival}, it may be available for other functions regarding discrete choice models. This function assumes a simple model without covariates.
 }
 \value{
-A vector containing the calculated shares of preference for each item is returned.
+A vector or data frame containing the calculated shares of preference for each item is returned.
 }
 \author{
 Hideo Aizaki

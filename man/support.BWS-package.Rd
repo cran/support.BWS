@@ -55,7 +55,7 @@ Version 0.2-0 and later versions of the package are also available for the margi
 
 \bold{Acknowledgments}
 
-This work was supported by JSPS KAKENHI Grant Numbers JP25450341 and JP16K07886.
+This work was supported by JSPS KAKENHI Grant Numbers JP25450341, JP16K07886, and JP20K06251.
 }
 
 \author{
@@ -68,7 +68,7 @@ Auger P, Devinney TM, Louviere JJ (2007) Using best-worst scaling methodology to
 
 Cohen E (2009) Applying best-worst scaling to wine marketing. \emph{International Journal of Wine Business Research}, \bold{21}(1), 8--23. \url{https://doi.org/10.1108/17511060910948008}.
 
-Cohen SH (2003) Maximum difference scaling: Improved measures of importance and preference for segmentation. \emph{Sawtooth Software Research Paper Series}, 1--17. \url{https://www.sawtoothsoftware.com/support/technical-papers/maxdiff-best-worst-scaling/maximum-difference-scaling-improved-measures-of-importance-and-preference-for-segmentation-2003}.
+Cohen SH (2003) Maximum difference scaling: Improved measures of importance and preference for segmentation. \emph{Sawtooth Software Research Paper Series}, 1--17. \url{https://sawtoothsoftware.com/resources/technical-papers/maximum-difference-scaling-improved-measures-of-importance-and-preference-for--segmentation}.
 
 Cohen S, Neira L (2004) Measuring preference for product benefits across countries: Overcoming scale usage bias with maximum difference scaling. \emph{Excellence in International Research}, 1--22.
 
@@ -79,7 +79,7 @@ Hensher DA, Rose JM, Greene WH (2015) \emph{Applied Choice Analysis}. 2nd editio
 Lee JA, Soutar GN, Louviere J (2007) Measuring values using best-worst scaling: The LOV example. \emph{Psychology & Marketing}, \bold{24}(12), 1043--1058. \url{https://doi.org/10.1002/mar.20197}.
 
 Lusk JL, Briggeman BC (2009) Food values. 
-\emph{American Journal of Agricultural Economics}, \bold{91}(1), 184--196. 
+\emph{American Journal of Agricultural Economics}, \bold{91}(1), 184--196. \url{https://doi.org/10.1111/j.1467-8276.2008.01175.x}.
 
 Louviere JJ, Flynn TN, Marley AAJ (2015) \emph{Best-Worst Scaling: Theory, Methods and Applications}. Cambridge University Press. \url{https://doi.org/10.1017/CBO9781107337855}.
 
