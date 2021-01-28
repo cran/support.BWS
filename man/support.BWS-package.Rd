@@ -52,9 +52,9 @@ SP_{i} = \frac{\exp(v_{i})}{\sum_{t=1}^{T}\exp(v_{t})}.
 }
 
 Version 0.2-0 and later versions of the package are also available for the marginal and marginal sequential models (Hensher et al., 2015, Appendix 6B) in the modeling approach.
+}
 
-\bold{Acknowledgments}
-
+\section{Acknowledgments}{
 This work was supported by JSPS KAKENHI Grant Numbers JP25450341, JP16K07886, and JP20K06251.
 }
 
@@ -62,28 +62,62 @@ This work was supported by JSPS KAKENHI Grant Numbers JP25450341, JP16K07886, an
 Hideo Aizaki
 }
 \references{
-Aizaki H, Nakatani T, Sato K (2014) \emph{Stated Preference Methods Using R}. CRC Press. \url{https://doi.org/10.1201/b17292}.
+Aizaki H, Nakatani T, Sato K (2014) 
+\emph{Stated Preference Methods Using R}. 
+CRC Press. 
 
-Auger P, Devinney TM, Louviere JJ (2007) Using best-worst scaling methodology to investigate consumer ethical beliefs across countries. \emph{Journal of Business Ethics}, \bold{70}, 299--326. \url{https://doi.org/10.1007/s10551-006-9112-7}.
+Auger P, Devinney TM, Louviere JJ (2007) 
+Using best-worst scaling methodology to investigate consumer ethical beliefs across countries. 
+\emph{Journal of Business Ethics}, \bold{70}, 299--326. 
 
-Cohen E (2009) Applying best-worst scaling to wine marketing. \emph{International Journal of Wine Business Research}, \bold{21}(1), 8--23. \url{https://doi.org/10.1108/17511060910948008}.
+Cohen E (2009) 
+Applying best-worst scaling to wine marketing. 
+\emph{International Journal of Wine Business Research}, \bold{21}(1), 8--23. 
 
-Cohen SH (2003) Maximum difference scaling: Improved measures of importance and preference for segmentation. \emph{Sawtooth Software Research Paper Series}, 1--17. \url{https://sawtoothsoftware.com/resources/technical-papers/maximum-difference-scaling-improved-measures-of-importance-and-preference-for--segmentation}.
+Cohen SH (2003) 
+Maximum difference scaling: 
+Improved measures of importance and preference for segmentation. 
+\emph{Sawtooth Software Research Paper Series}, 1--17. 
+\url{https://sawtoothsoftware.com/resources/technical-papers/maximum-difference-scaling-improved-measures-of-importance-and-preference-for--segmentation}.
 
-Cohen S, Neira L (2004) Measuring preference for product benefits across countries: Overcoming scale usage bias with maximum difference scaling. \emph{Excellence in International Research}, 1--22.
+Cohen S, Neira L (2004) 
+Measuring preference for product benefits across countries: 
+Overcoming scale usage bias with maximum difference scaling. 
+\emph{Excellence in International Research}, 1--22.
 
-Finn A, Louviere JJ (1992) Determining the appropriate response to evidence of public concern: The case of food safety. \emph{Journal of Public Policy & Marketing}, \bold{11}(2), 12--25. \url{https://doi.org/10.1177/074391569201100202}.
+Finn A, Louviere JJ (1992) 
+Determining the appropriate response to evidence of public concern: 
+The case of food safety. 
+\emph{Journal of Public Policy & Marketing}, \bold{11}(2), 12--25. 
 
-Hensher DA, Rose JM, Greene WH (2015) \emph{Applied Choice Analysis}. 2nd edition. Cambridge University Press. \url{https://doi.org/10.1017/CBO9781316136232}.
+Hensher DA, Rose JM, Greene WH (2015) 
+\emph{Applied Choice Analysis}. 2nd edition. Cambridge University Press. 
 
-Lee JA, Soutar GN, Louviere J (2007) Measuring values using best-worst scaling: The LOV example. \emph{Psychology & Marketing}, \bold{24}(12), 1043--1058. \url{https://doi.org/10.1002/mar.20197}.
+Hess S, Palma D (2019a) Apollo: 
+a flexible, powerful and customisable freeware package for choice model estimation and application. 
+\emph{Journal of Choice Modelling}, \bold{32}, 100170. 
 
-Lusk JL, Briggeman BC (2009) Food values. 
-\emph{American Journal of Agricultural Economics}, \bold{91}(1), 184--196. \url{https://doi.org/10.1111/j.1467-8276.2008.01175.x}.
+Hess S, Palma D (2019b) 
+Apollo version 0.0.9, user manual, 
+\url{http://www.apollochoicemodelling.com/}.
 
-Louviere JJ, Flynn TN, Marley AAJ (2015) \emph{Best-Worst Scaling: Theory, Methods and Applications}. Cambridge University Press. \url{https://doi.org/10.1017/CBO9781107337855}.
+Lee JA, Soutar GN, Louviere J (2007) 
+Measuring values using best-worst scaling: The LOV example. 
+\emph{Psychology & Marketing}, \bold{24}(12), 1043--1058. 
 
-Mueller S, Rungie C (2009) Is there more information in best-worst choice data?: Using the attitude heterogeneity structure to identify consumer segments. \emph{International Journal of Wine Business Research}, \bold{21}(1), 24--40. \url{https://doi.org/10.1108/17511060910948017}.
+Lusk JL, Briggeman BC (2009) 
+Food values. 
+\emph{American Journal of Agricultural Economics}, \bold{91}(1), 184--196. 
+
+Louviere JJ, Flynn TN, Marley AAJ (2015) 
+\emph{Best-Worst Scaling: Theory, Methods and Applications}. 
+Cambridge University Press. 
+
+Mueller S, Rungie C (2009) 
+Is there more information in best-worst choice data?: 
+Using the attitude heterogeneity structure to identify consumer segments. 
+\emph{International Journal of Wine Business Research}, \bold{21}(1), 24--40. 
+
 }
 \keyword{ package }
 

@@ -1,22 +1,22 @@
 \name{bws.dataset}
 \alias{bws.dataset}
 \title{
-Creating a data set suitable for BWS analysis on the basis of counting and modeling approaches
+Creating a data set suitable for case 1 best-worst scaling analysis
 }
 \description{
 This function creates a data set used for \code{bws.count()} in \pkg{support.BWS} and \code{clogit()} in \pkg{survival}.
 }
 \usage{
-bws.dataset(respondent.dataset, response.type = 1,
+bws.dataset(data = NULL, response.type = 1,
             choice.sets, design.type = 1,
             item.names = NULL, row.renames = TRUE,
             id = NULL, response = NULL,
             model = "maxdiff", delete.best = FALSE,
-            version = NULL)
+            version = NULL, respondent.dataset = NULL)
 }
 \arguments{
-  \item{respondent.dataset}{
-A data frame containing a respondent data set.
+  \item{data}{
+A data frame including responses to BWS questions (i.e., a survey/respondent data set).
 }
   \item{response.type}{
 A value describing the format of the response variables: \code{1} if the response variables follow a row number format, and \code{2} if they follow an item number format.
@@ -47,6 +47,9 @@ A logical value denoted by \code{TRUE} when deleting an item selected as the bes
 }
   \item{version}{
 A character showing the name of the version variable used in the respondent dataset and choice sets.
+}
+  \item{respondent.dataset}{
+A data frame containing a respondent data set. The argument is deprecated. Please use the argument \code{data} instead.
 }
 }
 \details{

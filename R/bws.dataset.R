@@ -1,5 +1,5 @@
 bws.dataset <- function(
-  respondent.dataset,
+  data = NULL,
   response.type = 1,
   choice.sets,
   design.type = 1,
@@ -9,7 +9,8 @@ bws.dataset <- function(
   response = NULL,
   model = "maxdiff",
   delete.best = FALSE,
-  version = NULL)
+  version = NULL,
+  respondent.dataset = NULL)
 {
 
   model.original <- model
@@ -24,7 +25,22 @@ bws.dataset <- function(
   }
 
 
-  data <- respondent.dataset
+### Added Jan 2021 ->
+  if (is.null(respondent.dataset)) {
+    if (is.null(data)) {
+      stop("Data set including responses to BWS questions should be assigned to argument data")
+    }
+  } else {
+    if (is.null(data)) {
+      data <- respondent.dataset
+    } else {
+      warning("Data set assigned to argument data is used, while one assigned to argment respondent.dataset is ignored")
+    }
+  }
+### <- Added Jan 2021
+
+
+#  data <- respondent.dataset   # Modified Jan 2021
   design <- choice.sets
 
   if (is.null(version)) {

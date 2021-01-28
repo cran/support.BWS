@@ -34,12 +34,6 @@ The function \code{bws.apollo} returns a data frame that contains variables \cod
 Hideo Aizaki
 }
 
-\references{
-Hess S, Palma D (2019a) Apollo: a flexible, powerful and customisable freeware package for choice model estimation and application. \emph{Journal of Choice Modelling}, \bold{32}, 100170. \url{https://doi.org/10.1016/j.jocm.2019.100170}.
-
-Hess S, Palma D (2019b) Apollo version 0.0.9, user manual, \url{http://www.apollochoicemodelling.com/}.
-}
-
 \seealso{
 \code{\link[support.BWS]{support.BWS-package}}, \code{\link[support.BWS]{bws.dataset}}, \code{\link[survival]{clogit}}, \code{\link[mlogit]{mlogit}}, \code{\link[gmnl]{gmnl}}, \code{\link[apollo]{apollo_estimate}}, \code{\link[apollo]{apollo_mnl}}
 }
