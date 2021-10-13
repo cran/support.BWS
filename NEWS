@@ -1,5 +1,11 @@
 Changes to package support.BWS
 
+2021-10-13, version 0.4-4
+- Added method for S3 class 'bws.count2': mean.
+- Modified method for S3 class 'bws.count2': sum.
+- Modified a function bws.dataset().
+- Revised help file.
+
 2021-01-28, version 0.4-3
 - Added an argument data to bws.dataset().
 - Revised help files.

@@ -391,18 +391,42 @@ sum.bws.count2 <- function(
   }
 
   BW <- B - W
-  stdBW <- BW / (nrow(x) * attributes(x)$fitem)
   rownames <- names.B
 
   rtn <- data.frame(B = B,
                     W = W,
-                    BW = BW,
-                    stdBW = stdBW)
+                    BW = BW)
 
   row.names(rtn) <- rownames
 
   return(rtn)
 
+}
+
+
+############################################# Added Oct 2021
+mean.bws.count2 <- function(
+  x,
+  ...)
+{
+  sums <- sum(x = x)
+
+  item.names <- row.names(sums)
+
+  nr      <- nrow(x)
+  mB      <- sums$B/nr
+  mW      <- sums$W/nr
+  mBW     <- sums$BW/nr
+  m.stdBW <- sums$BW/(nr * attributes(x)$fitem)
+
+  rtn <- data.frame(B = mB,
+                    W = mW,
+                    BW = mBW,
+                    stdBW = m.stdBW)
+
+  row.names(rtn) <- item.names
+
+  return(rtn)
 }
 
 

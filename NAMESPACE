@@ -16,6 +16,7 @@ S3method("print", "bws.count")
 S3method("plot", "bws.count2")
 S3method("barplot", "bws.count2")
 S3method("sum", "bws.count2")
+S3method("mean", "bws.count2")
 S3method("summary", "bws.count2")
 S3method("print", "summary.bws.count2")
 

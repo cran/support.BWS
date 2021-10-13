@@ -186,15 +186,26 @@ bws.dataset.base <- function(
     varying.names   <- response
   }
 
-  longRespData <-
-    reshape(respData,
-            idvar = "ID",
-            varying = varying.names,
-            sep = "",
-            direction = "long")
-  temp <- which(colnames(longRespData) == "time")
-  storage.mode(longRespData$time) <- "integer"
-  colnames(longRespData)[temp:(temp + 2)] <- c("Q", "RES.B", "RES.W")
+### Modified Oct 2021 ->
+  respOnlyData <- respData[, varying.names]
+  longRespData <- cbind(ID = respData[, "ID"], Q = 1, respOnlyData[, 1:2])
+  names(longRespData)[3:4] <- c("RES.B", "RES.W")
+
+  for (i in 2:numQuestions) {
+    b.col <- 2 * i -1
+    w.col <- 2 * i
+    tmpData <- cbind(ID = respData[, "ID"],
+                      Q = i,
+                      respOnlyData[, c(b.col, w.col)])
+    names(tmpData) <- names(longRespData)
+    longRespData   <- rbind(longRespData, tmpData)
+  }
+
+  covariateData <- respData[, c("ID", covariate.names), drop = FALSE]
+  longRespData  <- merge(x = covariateData, y = longRespData, by = "ID") 
+ 
+  temp <- which(colnames(longRespData) == "Q")
+### <- Modified Oct 2021
 
   if(response.type == 1) {
     for (i in 1:nrow(longRespData)) {
