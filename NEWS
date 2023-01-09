@@ -1,5 +1,10 @@
 Changes to package support.BWS
 
+2023-01-09, version 0.4-5
+- Added .onAttach().
+- Modified bws.response().
+- Revised DESCRIPTION, CITATION, and help files.
+
 2021-10-13, version 0.4-4
 - Added method for S3 class 'bws.count2': mean.
 - Modified method for S3 class 'bws.count2': sum.

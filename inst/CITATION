@@ -4,6 +4,23 @@ year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
 vers <- paste("R package version", meta$Version)
 
 citEntry(
+  entry     = "Article",
+  title     = "R packages and tutorial for case 1 best-worst scaling",
+  author    = "Hideo Aizaki and James Fogarty",
+  year      = "2023",
+  journal   = "Journal of Choice Modelling",
+  volume    = "46",
+  pages     = "100394",
+  doi       = "10.1016/j.jocm.2022.100394",
+
+  textVersion =
+  paste("Aizaki H, Fogarty J (2023).",
+        "R packages and tutorial for case 1 best-worst scaling.",
+        "Journal of Choice Modelling, 46, 100394.",
+        "DOI https://doi.org/10.1016/j.jocm.2022.100394.")
+)
+
+citEntry(
   entry  = "Manual",
   title  = "{support.BWS: Tools for Case 1 Best-Worst Scaling}",
   author = "Hideo Aizaki",
@@ -17,20 +34,4 @@ citEntry(
         vers, ". ",
         "URL https://CRAN.R-project.org/package=support.BWS.", sep="")
 )
-
-citEntry(
-  entry     = "Book",
-  title     = "Stated Preference Methods Using R",
-  author    = "Hideo Aizaki and Tomoaki Nakatani and Kazuo Sato",
-  year      = "2014",
-  doi       = "10.1201/b17292",
-  publisher = "CRC Press",
-
-  textVersion =
-  paste("Aizaki H, Nakatani T, Sato K (2014).",
-        "Stated Preference Methods Using R.",
-        "CRC Press.",
-        "DOI https://doi.org/10.1201/b17292.")
-)
-
 

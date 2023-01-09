@@ -8,8 +8,17 @@ bws.response <- function(
 {
 # Check arguments
   if (!is.null(item.names)) {
-    if (length(b) != length(item.names)) {
-      stop("length of item.names should be equal to that of b")
+    if (is.vector(b)) { ## added 20230109
+      if (length(b) != length(item.names)) {
+        stop("length of item.names should be equal to that of b")
+      }
+    } else { ## added 20230109
+      if (ncol(b) != length(item.names)) {
+        stop("length of item.names should be equal to number of columns of b")
+      }
+      if (nrow(b) != n) {
+        stop("n should be equal to number of rows of b")
+      }
     }
   }
 
@@ -26,7 +35,12 @@ bws.response <- function(
   X <- kronecker(X = matrix(rep(1, times = nR), nrow = nR, ncol = 1),
                  Y = data.matrix(D))
   colnames(X) <- colnames(D)
-  Xb <- sweep(x = X[, 5:(nI + 4)], MARGIN = 2, STATS = b, FUN = "*") 
+  if (is.vector(b)) {                      ## added 20230109
+    Xb <- sweep(x = X[, 5:(nI + 4)], MARGIN = 2, STATS = b, FUN = "*") 
+  } else {                                 ## added 20230109
+    bmat <- b[rep(1:nR, each = nrow(D)), ]
+    Xb <- X[, 5:(nI + 4)] * bmat
+  }
   V <- rowSums(Xb)
   if (!is.null(seed)) set.seed(seed)
   e <- -log(-log(runif(n = length(V))))

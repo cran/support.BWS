@@ -62,6 +62,10 @@ This work was supported by JSPS KAKENHI Grant Numbers JP25450341, JP16K07886, an
 Hideo Aizaki
 }
 \references{
+Aizaki H, Fogarty J (2023)
+R packages and tutorial for case 1 best-worst scaling.
+\emph{Journal of Choice Modelling}, \bold{46}, 100394.
+
 Aizaki H, Nakatani T, Sato K (2014) 
 \emph{Stated Preference Methods Using R}. 
 CRC Press. 
