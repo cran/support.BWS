@@ -204,14 +204,24 @@ barplot.bws.count2 <-function(
   mean = FALSE,
   error.bar = NULL,
   conf.level = 0.95,
+  subset,
+  sort = FALSE,
   ...)
 {
+### Modified 2023/03/29 ->
+  if(missing(subset)) {
+    r <- rep(TRUE, nrow(height))
+  } else {
+    r <- eval(substitute(subset), height, parent.frame())
+    r <- r & !is.na(r)
+  }
+### <- Modified 2023/03/29
 
   score  <- match.arg(score)
 
   data <- height
 
-  n <- nrow(data)
+#  n <- nrow(data)
 
   if (isTRUE(mean)) {
 
@@ -229,7 +239,9 @@ barplot.bws.count2 <-function(
       xlabel <- "Worst score"
     }
 
-    subdata <- data[, sub.var.names]
+    subdata <- data[r, sub.var.names]  ### Modified 2023/03/29
+    n       <- nrow(subdata)           ### Modified 2023/03/29
+
     mean    <- colMeans(subdata)
     order   <- order(mean)
 
@@ -279,7 +291,17 @@ barplot.bws.count2 <-function(
       stop(message = "'sbw' is valid only when mean = TRUE")
     }
 
-    SCOREtable <- bws.table(x = data, score = score)
+    SCOREtable <- bws.table(x = data, score = score, subset = r) ### Modified 2023/03/29
+
+### Modified 2023/03/29 ->
+    if (isTRUE(sort)) {
+      select.var.names <- paste0(score, ".", attributes(data)$vnames)
+      mean <- colMeans(data[r, select.var.names])
+      order <- order(mean)
+    } else {
+      order <- 1:length(SCOREtable)    
+    }   
+### <- Modified 2023/03/29
 
     if (is.null(mfrow)) {
       mfrow <- c(3, ceiling(length(attributes(data)$fitem)/3))  
@@ -287,7 +309,7 @@ barplot.bws.count2 <-function(
 
     par(mfrow = mfrow)
 
-    for(i in 1:length(SCOREtable)){
+    for(i in order){                              ### Modified 2023/03/29
       barplot(height = SCOREtable[[i]],
               main = names(SCOREtable)[i],
               xlab = "Score",
@@ -305,17 +327,26 @@ barplot.bws.count2 <-function(
 bws.table <- function(
   x,
   score = c("bw", "b", "w"),
+  subset,
   ...)
 {
+### Modified 2023/03/29 ->
+  if(missing(subset)) {
+    r <- rep(TRUE, nrow(x))
+  } else {
+    r <- eval(substitute(subset), x, parent.frame())
+    r <- r & !is.na(r)
+  }
+### <- Modified 2023/03/29
 
   score <- match.arg(score)
 
   if (score == "bw") {
-    SCORE <- x[, attributes(x)$bw.names]
+    SCORE <- x[r, attributes(x)$bw.names]          ### Modified 2023/03/29
   } else if (score == "b") {
-    SCORE <- x[, attributes(x)$b.names]
+    SCORE <- x[r, attributes(x)$b.names]           ### Modified 2023/03/29
   } else {
-    SCORE <- x[, attributes(x)$w.names]
+    SCORE <- x[r, attributes(x)$w.names]           ### Modified 2023/03/29
   } 
 
   freq.levels <- attributes(x)$fitem
@@ -343,17 +374,26 @@ plot.bws.count2 <- function(
   pos = 1,
   xlab = NULL,
   ylab = NULL,
+  subset,
   ...)
 {
+### Modified 2023/03/29 ->
+  if(missing(subset)) {
+    r <- rep(TRUE, nrow(x))
+  } else {
+    r <- eval(substitute(subset), x, parent.frame())
+    r <- r & !is.na(r)
+  }
+### <- Modified 2023/03/29
 
   score <- match.arg(score)
 
   if (score == "bw") {
-    SCORE <- x[, attributes(x)$bw.names]
+    SCORE <- x[r, attributes(x)$bw.names]         ### Modified 2023/03/29
   } else if (score == "b") {
-    SCORE <- x[, attributes(x)$b.names]
+    SCORE <- x[r, attributes(x)$b.names]          ### Modified 2023/03/29
   } else {
-    SCORE <- x[, attributes(x)$w.names]
+    SCORE <- x[r, attributes(x)$w.names]          ### Modified 2023/03/29
   }
 
   meanSCORE <- colMeans(SCORE)
@@ -433,17 +473,38 @@ mean.bws.count2 <- function(
 ##############################################
 summary.bws.count2 <- function(
   object,
+  sort = FALSE,
+  subset,
   ...)
 {
+### Modified 2023/03/29 ->
+  if(missing(subset)) {
+    r <- rep(TRUE, nrow(object))
+    rtn.subset <- "None"
+  } else {
+    r <- eval(substitute(subset), object, parent.frame())
+    r <- r & !is.na(r)
+    rtn.subset <- deparse(substitute(subset))
+  }
 
-  sums <- sum(x = object)
+  B  <- colSums(object[r, attributes(object)$b.names])
+  W  <- colSums(object[r, attributes(object)$w.names])
+  BW <- B - W
+  nr <- sum(r)
+  item.names <- sub("b.", "", names(B))
+  
+  if(!isTRUE(all.equal(item.names, sub("w.", "", names(W))))) {
+    stop("Names of B scores are inconsistent with those of W scores")
+  }
+  
+#  sums <- sum(x = object)
+#  item.names <- rownames(sums)
+#  nr    <- attributes(object)$nrespondents
+#  B     <- sums$B
+#  W     <- sums$W
+#  BW    <- sums$BW
+### <- Modified 2023/03/29
 
-  item.names <- rownames(sums)
-
-  nr    <- attributes(object)$nrespondents
-  B     <- sums$B
-  W     <- sums$W
-  BW    <- sums$BW
   rank  <- rank(-BW, na.last = TRUE, ties.method = "min")
 
   mB      <- B/nr
@@ -467,9 +528,15 @@ summary.bws.count2 <- function(
     std.sqrtBW = stdsqBW)
 
   attributes(rtn)$nrespondets = nr
+  attributes(rtn)$subset      = rtn.subset    ### Modified 2023/03/29
 
   rownames(rtn) <- item.names
 
+### Modified 2023/03/29 ->  
+  if(isTRUE(sort)) {
+    rtn <- rtn[order(rank), ]
+  }
+### <- Modified 2023/03/29
   class(rtn) <- c("summary.bws.count2", "data.frame")
 
   return(rtn)
@@ -485,7 +552,14 @@ print.summary.bws.count2 <- function(
   ...)
 {
 
-  cat("Number of respondents =", attributes(x)$nrespondets, "\n\n")
+### Modified 2023/03/29 ->  
+  cat("Number of respondents :", attributes(x)$nrespondets, "\n")
+  if(!attributes(x)$subset == "None") {
+    cat("Subset :", attributes(x)$subset, "\n")
+  }
+  cat("\n")
+### <- Modified 2023/03/29
+
   base::print.data.frame(x, digits = digits, scientific = scientific)
 
   invisible(x)

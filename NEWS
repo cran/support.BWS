@@ -1,5 +1,9 @@
 Changes to package support.BWS
 
+2023-03-29, version 0.4-6
+- Modified methods for S3 class 'bws.count2': summary, plot, and barplot.
+- Revised help files.
+
 2023-01-09, version 0.4-5
 - Added .onAttach().
 - Modified bws.response().

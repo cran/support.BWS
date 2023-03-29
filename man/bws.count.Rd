@@ -20,16 +20,16 @@ bws.count(data, cl = 1)
 
 \method{print}{bws.count}(x, digits = max(3, getOption("digits") - 3), scientific = FALSE, ...)
 
-\method{plot}{bws.count2}(x, score = c("bw", "b", "w"), pos = 1, xlab = NULL, ylab = NULL, ...)
+\method{plot}{bws.count2}(x, score = c("bw", "b", "w"), pos = 1, xlab = NULL, ylab = NULL, subset, ...)
 
 \method{barplot}{bws.count2}(height, score = c("bw", "b", "w", "sbw"), mfrow = NULL, mean = FALSE, 
-error.bar = NULL, conf.level = 0.95, ...)
+error.bar = NULL, conf.level = 0.95, subset, sort = FALSE, ...)
 
 \method{sum}{bws.count2}(x, ...)
 
 \method{mean}{bws.count2}(x, ...)
 
-\method{summary}{bws.count2}(object, ...)
+\method{summary}{bws.count2}(object, sort = FALSE, subset, ...)
 
 \method{print}{summary.bws.count2}(x, digits = max(3, getOption("digits") - 3), scientific = FALSE, ...)
 }
@@ -72,6 +72,12 @@ A character shoiwng a type of error bar adding on the bar plot of the aggregated
 }
   \item{conf.level}{
 A value showing the confidence level when adding the confidence interval on the bar plot using \code{error.bar}.
+}
+  \item{subset}{
+A logical expression indicating a subset of observations to be used.
+}
+  \item{sort}{
+A logical value denoted by \code{TRUE} when sorting barplots or items according to mean scores or \code{FALSE} (default).
 }
   \item{\dots}{
 Arguments passed to a function used internally.

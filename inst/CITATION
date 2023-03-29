@@ -3,10 +3,10 @@ citHeader("To cite support.BWS in publications use:")
 year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
 vers <- paste("R package version", meta$Version)
 
-citEntry(
-  entry     = "Article",
+bibentry(
+  bibtype   = "Article",
   title     = "R packages and tutorial for case 1 best-worst scaling",
-  author    = "Hideo Aizaki and James Fogarty",
+  author    = c(person("Hideo", "Aizaki"), person("James", "Fogarty")),
   year      = "2023",
   journal   = "Journal of Choice Modelling",
   volume    = "46",
@@ -20,13 +20,13 @@ citEntry(
         "DOI https://doi.org/10.1016/j.jocm.2022.100394.")
 )
 
-citEntry(
-  entry  = "Manual",
-  title  = "{support.BWS: Tools for Case 1 Best-Worst Scaling}",
-  author = "Hideo Aizaki",
-  year   = year,
-  note   = vers,
-  url    = "https://CRAN.R-project.org/package=support.BWS",
+bibentry(
+  bibtype  = "Manual",
+  title    = "{support.BWS: Tools for Case 1 Best-Worst Scaling}",
+  author   = c(person("Hideo", "Aizaki")),
+  year     = year,
+  note     = vers,
+  url      = "https://CRAN.R-project.org/package=support.BWS",
 
   textVersion =
   paste("Aizaki H (",year, "). ",
